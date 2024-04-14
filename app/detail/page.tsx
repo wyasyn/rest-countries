@@ -49,9 +49,10 @@ export default async function page({
                                 <div>
                                     <Image
                                         src={country?.flags.svg}
-                                        alt={country?.flags.alt}
+                                        alt={country.flags.alt}
                                         width={650}
                                         height={500}
+                                        className=" max-w-full "
                                     />
                                 </div>
                                 <div>
@@ -119,21 +120,40 @@ export default async function page({
                                         <h3 className="font-semibold">
                                             Border Countries:
                                         </h3>
-
                                         <div className="  flex flex-wrap gap-4">
                                             {country?.borders &&
-                                            country?.borders.length > 0
-                                                ? country?.borders.map(
-                                                      (border: any) => (
-                                                          <span
-                                                              className=" bg-card px-4 py-1 rounded-md mt-4 "
-                                                              key={border}
-                                                          >
-                                                              {border}
-                                                          </span>
-                                                      )
-                                                  )
-                                                : "No Borders"}
+                                            country?.borders.length > 0 ? (
+                                                Promise.all(
+                                                    country?.borders.map(
+                                                        async (border: any) => {
+                                                            const urlb = `https://restcountries.com/v3.1/alpha/${border}`;
+                                                            const borderCountries =
+                                                                await getData(
+                                                                    urlb
+                                                                );
+                                                            const borderCountry =
+                                                                borderCountries[0];
+                                                            return (
+                                                                <span
+                                                                    className="bg-card px-4 py-1 rounded-md mt-4"
+                                                                    key={border}
+                                                                >
+                                                                    {borderCountry
+                                                                        ? borderCountry
+                                                                              .name
+                                                                              .common
+                                                                        : border}
+                                                                </span>
+                                                            );
+                                                        }
+                                                    )
+                                                ).then(
+                                                    (borderElements) =>
+                                                        borderElements
+                                                )
+                                            ) : (
+                                                <span>No Borders</span>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
