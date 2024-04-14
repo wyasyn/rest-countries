@@ -29,7 +29,7 @@ export default async function page({
 }: searchParamsProp) {
     const url = `https://restcountries.com/v3.1/name/${name}`;
     const data = await getData(url);
-    const country = data[0];
+
     if (!data || !data[0]) {
         return (
             <div className="container">
@@ -42,6 +42,7 @@ export default async function page({
             </div>
         );
     }
+    const country = data[0];
     return (
         <div className=" container ">
             <Search />
