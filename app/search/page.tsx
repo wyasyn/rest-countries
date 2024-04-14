@@ -1,19 +1,31 @@
 import CountryCard from "@/components/CountryCard";
-import { getData } from "./action";
+import { getData } from "../action";
 
-export default async function Home() {
-    const url = "https://restcountries.com/v3.1/all";
+type searchParamsProp = {
+    searchParams: {
+        name: String;
+    };
+};
+
+export default async function page({
+    searchParams: { name },
+}: searchParamsProp) {
+    const url = `https://restcountries.com/v3.1/name/${name}`;
     const data = await getData(url);
-    return (
-        <div className="container">
-            {!data && (
+    if (!data || !data[0]) {
+        return (
+            <div className="container">
                 <h2 className=" text-lg my-4 max-w-prose ">
                     <span role="img" aria-label="crying face">
                         😢
                     </span>{" "}
                     Sorry, something went wrong. Please try again later.
                 </h2>
-            )}
+            </div>
+        );
+    }
+    return (
+        <div className=" container ">
             <div className=" grid gap-[3rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
                 {data.map((country: any) => {
                     return (
