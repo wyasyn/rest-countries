@@ -44,8 +44,7 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <Header />
-                    <Search />
-                    <div className=" my-[5rem] md:my-[7rem] ">{children}</div>
+                    <div className=" my-[3rem] md:my-[5rem] ">{children}</div>
                 </ThemeProvider>
             </body>
         </html>

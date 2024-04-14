@@ -20,7 +20,7 @@ export default function CountryCard({
 }: CardProp) {
     return (
         <Link href={`detail/?name=${name}`}>
-            <div className=" bg-card rounded-lg overflow-hidden ">
+            <div className=" bg-card rounded-lg overflow-hidden shadow-md hover:shadow-none ">
                 <div className=" aspect-video ">
                     <Image
                         className=" w-full h-full object-cover "

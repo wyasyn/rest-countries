@@ -1,11 +1,13 @@
 import CountryCard from "@/components/CountryCard";
 import { getData } from "./action";
+import Search from "@/components/Search";
 
 export default async function Home() {
     const url = "https://restcountries.com/v3.1/all";
     const data = await getData(url);
     return (
         <div className="container">
+            <Search />
             {!data && (
                 <h2 className=" text-lg my-4 max-w-prose ">
                     <span role="img" aria-label="crying face">

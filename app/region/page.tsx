@@ -1,11 +1,21 @@
 import CountryCard from "@/components/CountryCard";
 import { getData } from "../action";
+import Search from "@/components/Search";
+import { Metadata } from "next";
 
 type searchParamsProp = {
     searchParams: {
         name: String;
     };
 };
+
+export async function generateMetadata({
+    searchParams: { name },
+}: searchParamsProp): Promise<Metadata> {
+    return {
+        title: "Region: " + name,
+    };
+}
 
 export default async function page({
     searchParams: { name },
@@ -26,6 +36,7 @@ export default async function page({
     }
     return (
         <div className=" container ">
+            <Search />
             <div className=" grid gap-[3rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
                 {data.map((country: any) => {
                     return (

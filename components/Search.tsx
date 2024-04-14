@@ -14,7 +14,7 @@ async function searchCountry(formData: FormData) {
 
 export default function Search() {
     return (
-        <div className=" container flex flex-col md:items-center md:flex-row md:justify-between ">
+        <div className="flex flex-col md:items-center md:flex-row md:justify-between ">
             <form action={searchCountry}>
                 <div className=" w-full md:min-w-[400px] flex gap-4 bg-card rounded-lg my-8 md:my-12 px-2 ">
                     <Button variant="ghost" size="icon">
