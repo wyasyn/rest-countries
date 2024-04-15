@@ -5,7 +5,7 @@ import { Metadata } from "next";
 
 type searchParamsProp = {
     searchParams: {
-        name: String;
+        name: string;
     };
 };
 
@@ -36,7 +36,7 @@ export default async function page({
     }
     return (
         <div className=" container ">
-            <Search />
+            <Search reg={name} />
             <div className=" grid gap-[3rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
                 {data.map((country: any) => {
                     return (

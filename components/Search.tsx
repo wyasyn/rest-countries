@@ -12,7 +12,7 @@ async function searchCountry(formData: FormData) {
     }
 }
 
-export default function Search() {
+export default function Search({ reg }: { reg: string | null }) {
     return (
         <div className="flex flex-col md:items-center md:flex-row md:justify-between ">
             <form action={searchCountry}>
@@ -28,7 +28,7 @@ export default function Search() {
                     />
                 </div>
             </form>
-            <Region />
+            <Region reg={reg} />
         </div>
     );
 }

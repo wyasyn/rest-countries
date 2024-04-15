@@ -16,12 +16,12 @@ const region = [
     { value: "oceania", label: "Oceania" },
 ];
 
-export default function Region() {
+export default function Region({ reg }: { reg: string | null }) {
     return (
         <div className="  text-sm ">
             <DropdownMenu>
                 <DropdownMenuTrigger className=" flex items-center gap-2 bg-card py-2 px-3 rounded-md ">
-                    <p>Filter by Region</p>{" "}
+                    <p>{reg ? reg : "Filter by Region"}</p>{" "}
                     <ChevronDown className=" text-xs " />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -31,7 +31,7 @@ export default function Region() {
                                 key={index}
                                 className=" cursor-pointer "
                                 onClick={() => {
-                                    sendRegion(item.value);
+                                    sendRegion(item.label);
                                 }}
                             >
                                 {item.label}
