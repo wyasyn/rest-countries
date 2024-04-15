@@ -12,7 +12,13 @@ async function searchCountry(formData: FormData) {
     }
 }
 
-export default function Search({ reg }: { reg: string | null }) {
+export default function Search({
+    reg,
+    placeholder,
+}: {
+    reg: string | null;
+    placeholder: string | null;
+}) {
     return (
         <div className="flex flex-col md:items-center md:flex-row md:justify-between ">
             <form action={searchCountry}>
@@ -23,7 +29,11 @@ export default function Search({ reg }: { reg: string | null }) {
                     <Input
                         type="search"
                         name="name"
-                        placeholder="Search for a country ..."
+                        placeholder={
+                            placeholder
+                                ? placeholder
+                                : "Search for a country ..."
+                        }
                         className=" bg-card text-secondary focus-visible:text-foreground "
                     />
                 </div>

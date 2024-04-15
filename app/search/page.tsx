@@ -5,7 +5,7 @@ import { Metadata, ResolvingMetadata } from "next";
 
 type searchParamsProp = {
     searchParams: {
-        name: String;
+        name: string;
     };
 };
 
@@ -45,7 +45,7 @@ export default async function page({
     const country = data[0];
     return (
         <div className=" container ">
-            <Search reg="" />
+            <Search reg="" placeholder={name} />
             <div className=" grid gap-[3rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
                 <CountryCard
                     key={country.name.common}

@@ -7,7 +7,7 @@ export default async function Home() {
     const data = await getData(url);
     return (
         <div className="container">
-            <Search reg="" />
+            <Search reg="" placeholder={null} />
             {!data && (
                 <h2 className=" text-lg my-4 max-w-prose ">
                     <span role="img" aria-label="crying face">
