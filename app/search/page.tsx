@@ -30,14 +30,14 @@ export default async function page({
     const url = `https://restcountries.com/v3.1/name/${name}`;
     const data = await getData(url);
 
-    if (!data || !data[0]) {
+    if (!data || data.length == 0) {
         return (
             <div className="container">
                 <h2 className=" text-lg my-4 max-w-prose ">
                     <span role="img" aria-label="crying face">
                         😢
                     </span>{" "}
-                    Sorry, something went wrong. Please try again later.
+                    Sorry, No country found!
                 </h2>
             </div>
         );
@@ -47,15 +47,19 @@ export default async function page({
         <div className=" container ">
             <Search reg="" placeholder={name} />
             <div className=" grid gap-[3rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-                <CountryCard
-                    key={country.name.common}
-                    name={country.name.common}
-                    capital={country.capital}
-                    region={country.region}
-                    population={country.population}
-                    img={country.flags.svg}
-                    alt={country.flags.alt}
-                />
+                {data.map((country: any) => {
+                    return (
+                        <CountryCard
+                            key={country.name.common}
+                            name={country.name.common}
+                            capital={country.capital}
+                            region={country.region}
+                            population={country.population}
+                            img={country.flags.svg}
+                            alt={country.flags.alt}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

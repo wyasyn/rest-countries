@@ -32,14 +32,14 @@ export default async function page({
     const data = await getData(url);
     const country = data[0];
 
-    if (!data || !data[0]) {
+    if (!data || data.length == 0) {
         return (
             <div className="container">
                 <h2 className=" text-lg my-4 max-w-prose ">
                     <span role="img" aria-label="crying face">
                         😢
                     </span>{" "}
-                    Sorry, something went wrong. Please try again later.
+                    Sorry, No country found!
                 </h2>
             </div>
         );

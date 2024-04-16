@@ -5,18 +5,22 @@ import Search from "@/components/Search";
 export default async function Home() {
     const url = "https://restcountries.com/v3.1/all";
     const data = await getData(url);
+    if (!data && data.length == 0) {
+        <div className="container">
+            <h2 className=" text-lg my-4 max-w-prose ">
+                <span role="img" aria-label="crying face">
+                    😢
+                </span>{" "}
+                Sorry, something went wrong. Please try again later.
+            </h2>
+        </div>;
+    }
+
     return (
         <div className="container">
             <Search reg="" placeholder={null} />
-            {!data && (
-                <h2 className=" text-lg my-4 max-w-prose ">
-                    <span role="img" aria-label="crying face">
-                        😢
-                    </span>{" "}
-                    Sorry, something went wrong. Please try again later.
-                </h2>
-            )}
-            <div className=" grid gap-[3rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+
+            <div className=" my-[3rem] grid gap-[3rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
                 {data.map((country: any) => {
                     return (
                         <CountryCard
