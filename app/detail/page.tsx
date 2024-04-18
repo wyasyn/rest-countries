@@ -68,7 +68,9 @@ export default async function page({
                                 <div className=" text-sm font-thin flex flex-col gap-4 ">
                                     <p>
                                         Native Name:{" "}
-                                        {country?.name.nativeName.common}
+                                        {country?.name.nativeName.eng
+                                            ? country.name.nativeName.eng.common
+                                            : country.name.common}
                                     </p>
                                     <p>Population: {country?.population}</p>
                                     <p>Sub region: {country?.subregion}</p>
